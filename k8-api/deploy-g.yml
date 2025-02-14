@@ -1,29 +1,32 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: go-api-g
+  name: go-api-green
   namespace: go-api-namespace  # Add namespace reference
   labels:
-    app: go-api-g
+    app: go-api
+    version: green
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      app: go-api-g
+      app: go-api
+      version: green
   template:
     metadata:
       labels:
-        app: go-api-g
+        app: go-api
+        version: green
     spec:
       containers:
-      - name: go-api-g
+      - name: go-api
         image: procstar/bg-deploy-ha:latest
         imagePullPolicy: Always  # Ensures the image is always pulled
         ports:
         - containerPort: 8080
         envFrom:
         - configMapRef:
-            name: go-api-config-g
+            name: go-api-config-green
         livenessProbe:
           httpGet:
             path: /

@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: go-api-config-g
+  name: go-api-config-green
   namespace: go-api-namespace  # Add namespace reference
 data:
   PORT: "8080"

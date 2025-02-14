@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: go-api
-        image: procstar/bg-deploy-ha:0.0.1
+        image: procstar/bg-deploy-ha:latest
         ports:
         - containerPort: 8080
         envFrom:

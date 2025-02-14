@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-api-g
+  namespace: go-api-namespace  # Add namespace reference
+  labels:
+    app: go-api-g
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: go-api-g
+  template:
+    metadata:
+      labels:
+        app: go-api-g
+    spec:
+      containers:
+      - name: go-api-g
+        image: procstar/bg-deploy-ha:latest
+        imagePullPolicy: Always  # Ensures the image is always pulled
+        ports:
+        - containerPort: 8080
+        envFrom:
+        - configMapRef:
+            name: go-api-config-g
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "250m"
+            memory: "256Mi"

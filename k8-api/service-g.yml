@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: go-api-service
+  name: go-api-service-g
   namespace: go-api-namespace  # Add namespace reference
 spec:
   selector:
-    app: go-api
+    app: go-api-g
   ports:
     - protocol: TCP
       port: 80       # Exposed Service Port

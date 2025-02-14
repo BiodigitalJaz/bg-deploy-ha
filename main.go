@@ -4,8 +4,11 @@ import (
 	"image"
 	"image/color"
 	"image/png"
+	"log"
 	"net/http"
+	"os"
 	"strconv"
+	"strings"
 
 	"math/rand/v2"
 
@@ -18,6 +21,14 @@ type User struct {
 	Name  string `json:"name"`
 	Email string `json:"email"`
 }
+
+// Log levels
+const (
+	LogLevelDebug = "debug"
+	LogLevelInfo  = "info"
+	LogLevelWarn  = "warn"
+	LogLevelError = "error"
+)
 
 // Server struct to manage routes and the Gin engine
 type Server struct {
@@ -160,6 +171,37 @@ func (s *Server) Run(addr string) {
 }
 
 func main() {
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080" //Default to 8080 if not set
+	}
+
+	env := os.Getenv("APP_ENV")
+	logLevel := strings.ToLower(os.Getenv("LOG_LEVEL"))
+	if logLevel == "" {
+		logLevel = LogLevelInfo // Default to "info"
+	}
+
+	// Configure log output based on log level
+	log.SetFlags(log.Ldate | log.Ltime | log.Lshortfile) // Adds timestamp & file info
+
+	log.Printf("Starting API in %s mode on port %s with log level: %s", env, port, logLevel)
+
+	// Example of logging at different levels
+	switch logLevel {
+	case LogLevelDebug:
+		log.Println("[DEBUG] Debugging enabled")
+		fallthrough
+	case LogLevelInfo:
+		log.Println("[INFO] Application is starting...")
+	case LogLevelWarn:
+		log.Println("[WARN] Warning level set")
+	case LogLevelError:
+		log.Println("[ERROR] Error logging only")
+	default:
+		log.Println("[INFO] Default log level: INFO")
+	}
+
 	server := NewServer()
-	server.Run(":8080")
+	server.Run(":" + port)
 }

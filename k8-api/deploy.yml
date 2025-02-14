@@ -18,6 +18,7 @@ spec:
       containers:
       - name: go-api
         image: procstar/bg-deploy-ha:latest
+        imagePullPolicy: Always  # Ensures the image is always pulled
         ports:
         - containerPort: 8080
         envFrom:

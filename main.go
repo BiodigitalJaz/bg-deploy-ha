@@ -166,7 +166,8 @@ func (s *Server) deleteUser(c *gin.Context) {
 
 // Run starts the API server
 func (s *Server) Run(addr string) {
-	gin.SetMode(gin.ReleaseMode)
+
+	gin.SetMode(os.Getenv("APP_ENV"))
 	s.router.Run(addr)
 }
 

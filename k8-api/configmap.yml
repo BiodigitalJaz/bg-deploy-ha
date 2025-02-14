@@ -5,5 +5,5 @@ metadata:
   namespace: go-api-namespace  # Add namespace reference
 data:
   PORT: "8080"
-  APP_ENV: "production"
+  APP_ENV: "release" # Change this to "debug" as needed
   LOG_LEVEL: "debug"  # Change this to "info", "warn", or "error" as needed

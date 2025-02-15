@@ -30,7 +30,7 @@ This project is a simple REST API server built using the [Gin](https://github.co
 
 ### **Clone the Repository**
 ```sh
-git clone https://github.com/yBiodigitalJaz/bg-deploy-ha.git
+git clone https://github.com/BiodigitalJaz/bg-deploy-ha.git
 cd bg-deploy-ha
 ```
 

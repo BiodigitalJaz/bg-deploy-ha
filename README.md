@@ -30,8 +30,8 @@ This project is a simple REST API server built using the [Gin](https://github.co
 
 ### **Clone the Repository**
 ```sh
-git clone https://github.com/your-username/go-api-server.git
-cd go-api-server
+git clone https://github.com/yBiodigitalJaz/bg-deploy-ha.git
+cd bg-deploy-ha
 ```
 
 ### **Install Dependencies**
